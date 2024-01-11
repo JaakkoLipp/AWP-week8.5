@@ -110,7 +110,7 @@ router.get(
   }
 );
 
-const Todo = require("./models/Todo");
+const Todo = require("../models/todo");
 
 router.post(
   "/api/todos",
