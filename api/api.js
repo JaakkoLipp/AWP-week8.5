@@ -6,6 +6,7 @@ const router = express.Router();
 const dotenv = require("dotenv").config();
 const passport = require("../passport-config");
 const { body, validationResult } = require("express-validator");
+const Todo = require("../models/todo");
 
 // POST route for registr
 router.post(
@@ -110,10 +111,8 @@ router.get(
   }
 );
 
-const Todo = require("../models/todo");
-
 router.post(
-  "/api/todos",
+  "/todos",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
