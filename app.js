@@ -8,9 +8,9 @@ var indexRouter = require("./routes/index");
 var apiRouter = require("./api/api");
 var app = express();
 
-// Connect to MongoDB
+// Connect to MongoDB localhost didnt work.
 mongoose
-  .connect("mongodb://localhost:27017/testdb")
+  .connect("mongodb://127.0.0.1:27017/testdb")
   .then(() => console.log("MongoDB Connected!"))
   .catch((err) => console.log(err));
 

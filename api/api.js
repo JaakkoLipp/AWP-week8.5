@@ -8,8 +8,6 @@ const passport = require("../passport-config");
 const { body, validationResult } = require("express-validator");
 const Todo = require("../models/todo");
 
-//retry connection to mongodb edit
-
 // POST route for registr
 router.post(
   "/user/register/",
