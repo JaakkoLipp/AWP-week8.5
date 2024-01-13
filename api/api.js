@@ -101,10 +101,13 @@ router.post("/user/login", async (req, res) => {
     }
 
     // JWT token
-    const token = jwt.sign({ userId: user._id }, process.env.SECRET);
+    const token = jwt.sign(
+      { userId: user._id, email: user.email },
+      process.env.SECRET
+    );
 
     // Return the JWT token
-    res.json({ token });
+    res.json({ success: true, token });
   } catch (error) {
     console.error(error);
     res.sendStatus(500);
@@ -116,7 +119,7 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     // Authentication successful
-    res.json({ email: req.body.email });
+    res.json({ email: req.user.email });
   }
 );
 
