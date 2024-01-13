@@ -48,13 +48,22 @@ router.post(
             password: hashedPassword,
           });
 
-          // Save the user to the database
-          await newUser.save();
+          try {
+            // Save the user to the database
+            await newUser.save();
+            // Return success status
+            res.sendStatus(200);
+          } catch (error) {
+            if (error.code === 11000) {
+              // Duplicate email error
+              return res.status(403).json({ email: "Email already in use" });
+            } else {
+              console.error(error);
+              res.sendStatus(500);
+            }
+          }
         });
       });
-
-      // Return success status
-      res.sendStatus(200);
     } catch (error) {
       console.error(error);
       res.sendStatus(500);
