@@ -32,12 +32,6 @@ router.post(
         return res.status(400).json({ errors: errors.array() });
       }
 
-      // Check if same email already exists
-      const existingUser = await User.findOne({ email });
-      if (existingUser) {
-        return res.status(403).json({ error: "Email already in use" });
-      }
-
       // Hash with bcrypt
       bcrypt.genSalt(10, function (err, salt) {
         bcrypt.hash(password, salt, async function (err, hashedPassword) {
